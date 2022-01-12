@@ -1,0 +1,9 @@
+{
+	"name": "srgdatafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "caae24a6-baf5-476b-8ec9-a88de40d8831",
+		"tenantId": "997fe7fd-97f1-4f7b-b0d9-bd35dc5acfc0"
+	}
+}
