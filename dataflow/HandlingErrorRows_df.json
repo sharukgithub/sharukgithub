@@ -13,8 +13,12 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1"
+			"transformations": [
+				{
+					"name": "ConditionalSplitCheckInvalidData"
+				}
+			],
+			"script": "source(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 split(isNull(toDate(Column_1,'dd-MM-yyyy')),\n\tERROR_FUNCTION(''),\n\tdisjoint: false) ~> ConditionalSplitCheckInvalidData@(ErrorRows, GoodRows)"
 		}
 	}
 }
