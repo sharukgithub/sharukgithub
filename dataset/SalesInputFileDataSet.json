@@ -15,7 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "IN_SalesIND_2022_JAN_01.csv",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
 				"folderPath": "GlobalSales",
 				"container": "adfdemo"
 			},
